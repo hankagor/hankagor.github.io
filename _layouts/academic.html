@@ -1,0 +1,54 @@
+<!doctype html>
+<html data-theme="dark" lang="{{ site.lang | default: 'en' }}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% unless page.permalink == '/' %}{{ page.title | capitalize }} · {% endunless %}{{ site.first_name }} {{ site.last_name }}</title>
+    <meta name="description" content="{{ site.description | escape }}">
+    <script>
+      try {
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'light' || savedTheme === 'dark') {
+          document.documentElement.dataset.theme = savedTheme;
+        }
+      } catch (_) {}
+    </script>
+    <script src="{{ '/assets/js/theme.js' | relative_url }}" defer></script>
+    <link rel="stylesheet" href="{{ '/assets/css/academic.css' | relative_url }}">
+    <link rel="icon" href="data:,">
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <nav aria-label="Main navigation">
+        <a class="site-name" href="{{ '/' | relative_url }}">Hanka Goralija</a>
+        <div class="nav-links">
+          <a href="{{ '/' | relative_url }}" {% if page.permalink == '/' %}aria-current="page"{% endif %}>about</a>
+          <a href="{{ '/publications/' | relative_url }}" {% if page.permalink == '/publications/' %}aria-current="page"{% endif %}>publications</a>
+          <a href="{{ '/background/' | relative_url }}" {% if page.permalink == '/background/' %}aria-current="page"{% endif %}>background</a>
+          <a href="{{ '/CV.pdf' | relative_url }}">CV</a>
+          <button class="theme-toggle" type="button" hidden>Switch to light theme</button>
+        </div>
+      </nav>
+    </header>
+    <main id="main">
+      {% if page.permalink == '/' %}
+      <h1>Hanka Goralija</h1>
+      <div class="profile">
+        <img src="{{ '/photo.jpg' | relative_url }}?v={{ site.time | date: '%s' }}" alt="Hanka Goralija" width="240" height="300">
+        <p>PhD researcher<br>EPFL · Lausanne, Switzerland</p>
+      </div>
+      {{ content }}
+      <section class="recent-publications" aria-labelledby="recent-publications">
+        <h2 id="recent-publications"><a href="{{ '/publications/' | relative_url }}">Recent publications</a></h2>
+        <div class="publications">{% bibliography --query @*[selected=true] %}</div>
+      </section>
+      <p>Check out my projects on <a href="https://github.com/hankagor">GitHub</a>.</p>
+      {% else %}
+      <h1>{{ page.title | capitalize }}</h1>
+      {{ content }}
+      {% endif %}
+    </main>
+    <footer>Hanka Goralija · <a href="mailto:hanka.goralija@epfl.ch">Contact</a></footer>
+  </body>
+</html>

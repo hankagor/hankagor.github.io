@@ -1,0 +1,16 @@
+source "https://rubygems.org"
+ruby ">= 3.3", "< 4.0"
+gem "jekyll", "~> 4.4"
+gem "webrick", "~> 1.9"
+group :jekyll_plugins do
+  gem "al_folio_core", "= 1.0.15"
+  gem "al_icons", "= 1.0.0"
+  gem "al_citations", "= 1.0.1"
+  gem "al_folio_upgrade", "= 1.0.3"
+  gem "jekyll-3rd-party-libraries"
+  gem "jekyll-scholar"
+  gem "jekyll-socials"
+  gem "jekyll-sitemap"
+  gem "jekyll-email-protect"
+  gem "jekyll-link-attributes"
+end

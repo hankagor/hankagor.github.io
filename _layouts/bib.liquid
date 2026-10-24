@@ -1,0 +1,7 @@
+<div class="publication">
+  <div class="publication-title">{{ entry.title }}</div>
+  <div class="publication-authors">{% for author in entry.author_array %}{% if author.last == 'Goralija' %}<strong>{{ author.first }} {{ author.last }}</strong>{% else %}{{ author.first }} {{ author.last }}{% endif %}{% unless forloop.last %}, {% endunless %}{% endfor %}</div>
+  <div class="publication-venue"><em>{{ entry.booktitle | default: entry.journal }}</em>, {{ entry.year }}{% if entry.additional_info %} · {{ entry.additional_info }}{% endif %}</div>
+  {% if entry.url %}<a class="paper-link" href="{{ entry.url }}">Paper</a>{% endif %}
+  {% if entry.abstract %}<details><summary>Abstract</summary><p>{{ entry.abstract }}</p></details>{% endif %}
+</div>
